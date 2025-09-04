@@ -1,0 +1,16 @@
+html {
+    font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif;
+    overflow: hidden;
+}
+
+.root {
+    background-color: teal;
+}
+
+.vertical-center {
+    margin: 0;
+    position: absolute;
+    top: 40%;
+    margin-left: 51%;
+    color: yellow;
+}
