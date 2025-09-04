@@ -1,9 +1,6 @@
-html {
+html, body {
     font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif;
     overflow: hidden;
-}
-
-.root {
     background-color: teal;
 }
 
