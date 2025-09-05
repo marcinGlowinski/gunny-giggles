@@ -3,7 +3,7 @@ class Kity {
         this.id = id;
         this.url = url;
         this.startX = Math.random() > 0.5 ? 110 : -10;
-        this.startY = Math.random() * 70 + 20;
+        this.startY = Math.random() * 85 + 5;
         this.x = this.startX;
         this.y = this.startY;
         this.speed = Math.random() * 0.1 + 0.3;
@@ -53,20 +53,26 @@ class Kity {
 
 window.onload = async () => {
     const cacheKey = "catImagesCache";
-    let data;
+    let data, time;
     const cached = localStorage.getItem(cacheKey);
     if (cached) {
         try {
-            data = JSON.parse(cached);
+            let json = JSON.parse(cached);
+            data = json.data;
+            time = json.time;
         } catch {
             data = null;
+            time = Date.now();
         }
     }
 
-    if (!data) {
-        const result = await fetch("https://api.thecatapi.com/v1/images/search?limit=10");
+    const cacheUpdateTimeLongerThanMinutes = (time, minutes) => ((Date.now() - time) / 60000) > minutes;
+    
+    if (!data || cacheUpdateTimeLongerThanMinutes(time, 10)) {
+        const result = await fetch("https://api.thecatapi.com/v1/images/search?limit=50&api_key=live_UlaEu4QrvvrazfXbuvd9qDa6eisPKAG9ISdMDM1MHvFHirJuNLOs0jSjGlySK27B");
         data = await result.json();
-        localStorage.setItem(cacheKey, JSON.stringify(data));
+        let json = { time: Date.now(), data: data };
+        localStorage.setItem(cacheKey, JSON.stringify(json));
     }
 
     const kitys = data.map(entry => new Kity(entry.id, entry.url));
