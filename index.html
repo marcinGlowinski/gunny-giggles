@@ -1,19 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Hiiiiiiiiiiiiiii :3</title>
+    <title>Now with five times the cats!</title>
     <link rel="icon" type="image/x-icon" href="images/laugh.ico">
 </head>
-<body>
-    <div id="kittys"></div>
 
+<body>
     <div class="vertical-center">
-        <h1>Under construction :3</h1>
+        <h1 id="header">Under construction :3</h1>
     </div>
 
+    <div class="music-player">
+        <iframe
+            id="scPlayer"
+            src="https://w.soundcloud.com/player/?visual=true&url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F1857808386&show_artwork=true&show_comments=false"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+        </iframe>
+    </div>
+
+    <div id="kittys"></div>
+
     <script src="main.js"></script>
+    <script src="music_player_bounce.js"></script>
+    <script src="https://w.soundcloud.com/player/api.js"></script>
 </body>
+
 </html>
