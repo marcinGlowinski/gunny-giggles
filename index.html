@@ -10,30 +10,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Now with five times the cats!</title>
-    <link rel="icon" type="image/x-icon" href="images/laugh.ico">
+    <title>Fancy seeing you here</title>
+    <link rel="icon" type="image/x-icon" href="images/smug.ico">
 </head>
 
+<style>
+    html,
+    body {
+        font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif;
+        overflow: hidden;
+        background-color: darkslategray;
+    }
+
+    li, a {
+        color: yellow;
+        text-decoration: none;
+    }
+
+    small {
+        text-decoration: line-through;
+    }
+
+    .code-container {
+        position: absolute;
+        left: 50%;
+    }
+
+    .code {
+        font-family: monospace;
+        font-size: x-large;
+        white-space: pre-wrap;
+        box-sizing: border-box;
+        border: 5px solid black;
+        padding: 20px;
+        background-image: linear-gradient(to right, #417375, #173d4e);
+    }
+
+    .dvd-logo {
+        width: 10%;
+        position: absolute;
+        visibility: hidden;
+    }
+</style>
+
+<script>
+    addEventListener("DOMContentLoaded", () => {
+        const logo = document.getElementById("dvd");
+        logo.style.visibility = "visible";
+
+        let x = Math.random() * (window.innerWidth - logo.offsetWidth);
+        let y = Math.random() * (window.innerHeight - logo.offsetHeight);
+
+        let dx = 1.5;
+        let dy = 1.5;
+
+        function updateBounds() {
+            maxX = window.innerWidth - logo.offsetWidth;
+            maxY = window.innerHeight - logo.offsetHeight;
+        }
+
+        let maxX, maxY;
+        updateBounds();
+
+        window.addEventListener("resize", updateBounds);
+
+        setInterval(() => {
+            x += dx;
+            y += dy;
+
+            if (x <= 0 || x >= maxX) {
+                dx *= -1;
+                x = Math.max(0, Math.min(x, maxX));
+            }
+
+            if (y <= 0 || y >= maxY) {
+                dy *= -1;
+                y = Math.max(0, Math.min(y, maxY));
+            }
+
+            logo.style.left = `${x}px`;
+            logo.style.top = `${y}px`;
+        }, 10);
+    });
+</script>
+
+
 <body>
-    <div id="kittys"></div>
+    <img id="dvd" class="dvd-logo" src="images/DVD_logo.svg" alt="dvd logo"/>
 
-    <div class="vertical-center">
-        <h1 id="header">Under construction :3</h1>
-        <a href="pages/test.html">click meeee</a>
+    <div class="code-container">
+        <div class="code">.LC0:
+    .string "Hi my name is Gunt"
+main:
+    push    rbp
+    mov     rbp, rsp
+    mov     edi, OFFSET FLAT:.LC0
+    mov     eax, 0
+    call    printf
+    mov     eax, 0
+    pop     rbp
+    ret</div>
+        <small>idk assembly that well tbh</small>
     </div>
 
-    <div class="music-player">
-        <iframe
-            id="scPlayer"
-            src="https://w.soundcloud.com/player/?visual=true&url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F1857808386&show_artwork=true&show_comments=false"
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
-        </iframe>
-    </div>
-
-    <script src="main.js"></script>
-    <script src="music_player_bounce.js"></script>
-    <script src="https://w.soundcloud.com/player/api.js"></script>
+    <ul>
+        <li><a href="pages/test.html">click meeee</a></li>
+    </ul>
 </body>
 
 </html>
