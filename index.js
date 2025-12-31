@@ -1,8 +1,6 @@
 function bounce_dvd() {
     const logo = document.getElementById("dvd");
     if (!logo) return;
-    
-    logo.style.visibility = "visible";
 
     let x = Math.random() * (window.innerWidth - logo.offsetWidth);
     let y = Math.random() * (window.innerHeight - logo.offsetHeight);
@@ -19,6 +17,10 @@ function bounce_dvd() {
     updateBounds();
 
     window.addEventListener("resize", updateBounds);
+
+    logo.style.left = `${x}px`;
+    logo.style.top = `${y}px`;
+    logo.style.visibility = "visible";
 
     setInterval(() => {
         x += dx;
@@ -40,12 +42,5 @@ function bounce_dvd() {
 }
 
 addEventListener("DOMContentLoaded", () => {
-    // bounce_dvd();
-
-    const cursor = document.getElementById("cursor");
-    if (!cursor) return;
-
-    setInterval(() => {
-        cursor.style.backgroundColor = cursor.style.backgroundColor === "white" ? "black" : "white";
-    }, 600);
+    bounce_dvd();
 });

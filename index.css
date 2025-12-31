@@ -25,33 +25,14 @@ body {
     justify-content: center;
 }
 
-.container div.console {
+.container div.content {
     grid-area: content;
-    background-color: black;
-    width: 400px;
-    height: 400px;
-}
-
-div.cursor {
-    background-color: white;
-    width: 1px;
-    height: 16px;
 }
 
 li, a {
     grid-area: menu;
     color: yellow;
     text-decoration: none;
-}
-
-.code {
-    font-family: monospace;
-    font-size: x-large;
-    white-space: pre-wrap;
-    box-sizing: border-box;
-    border: 5px solid black;
-    padding: 20px;
-    background-image: linear-gradient(to right, #417375, #173d4e);
 }
 
 .dvd-logo {
