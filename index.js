@@ -1,5 +1,16 @@
-function bounce_dvd() {
-    const logo = document.getElementById("dvd");
+const dvdAddedEvent = new CustomEvent("dvdAdded");
+
+addEventListener("DOMContentLoaded", () => {
+    bounce_dvd(document.getElementsByClassName("dvd-logo")[0]);
+});
+
+addEventListener("dvdAdded", () => {
+    for (const logo of document.getElementsByClassName("dvd-logo")) {
+        bounce_dvd(logo);
+    }
+});
+
+function bounce_dvd(logo) {
     if (!logo) return;
 
     let x = Math.random() * (window.innerWidth - logo.offsetWidth);
@@ -17,6 +28,16 @@ function bounce_dvd() {
     updateBounds();
 
     window.addEventListener("resize", updateBounds);
+
+    logo.addEventListener("mousedown", () => {
+        const dvds = document.getElementById("dvds");
+        const new_logo = document.createElement("img");
+        new_logo.className = logo.className;
+        new_logo.src = logo.src;
+        new_logo.alt = logo.alt;
+        dvds.append(new_logo);
+        window.dispatchEvent(dvdAddedEvent);
+    });
 
     logo.style.left = `${x}px`;
     logo.style.top = `${y}px`;
@@ -40,7 +61,3 @@ function bounce_dvd() {
         logo.style.top = `${y}px`;
     }, 10);
 }
-
-addEventListener("DOMContentLoaded", () => {
-    bounce_dvd();
-});

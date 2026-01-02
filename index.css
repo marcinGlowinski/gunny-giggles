@@ -2,7 +2,7 @@ html,
 body {
     font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif;
     overflow: hidden;
-    background-color: darkslategray;
+    background-color: #008080;
 }
 
 .container {
